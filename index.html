@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroWatch - კოსმოსური მონიტორინგის თანამედროვე პლატფორმა</title>
+  <meta name="description" content="AstroWatch - აღმოაჩინეთ სამყარო რეალურ დროში. ასტრონომიული დაკვირვებები, თანამგზავრების მონიტორინგი და ღამის ცის ინტერაქტიული რუკა.">
+  
+  <!-- Google Fonts: Inter & Outfit with Noto Sans Georgian fallback for clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+Georgian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas for dynamic space stars background -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- Navigation Header -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-logo" id="brand-logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="7"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <circle cx="18" cy="6" r="1.5" fill="currentColor"></circle>
+            <path d="M4.93 4.93l1.41 1.41"></path>
+            <path d="M17.66 17.66l1.41 1.41"></path>
+          </svg>
+        </span>
+        <span class="logo-text">Astro<span class="text-accent">Watch</span></span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#hero" class="nav-link active" id="nav-hero-link">მთავარი</a>
+        <a href="#about" class="nav-link" id="nav-about-link">ჩვენ შესახებ</a>
+        <a href="#features" class="nav-link" id="nav-features-link">შესაძლებლობები</a>
+        <a href="#contact" class="nav-link" id="nav-contact-link">კონტაქტი</a>
+        <a href="#contact" class="btn btn-sm btn-outline nav-btn" id="nav-cta-btn">დაკავშირება</a>
+      </nav>
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="ნავიგაციის მენიუ">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+      <div class="container hero-container">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>🌌 კოსმოსური მონიტორინგის ახალი თაობა</span>
+        </div>
+
+        <h1 class="hero-title" id="hero-heading">AstroWatch</h1>
+
+        <p class="hero-description">
+          აკონტროლეთ ღამის ცის მოვლენები რეალურ დროში. ასტრონომიული დაკვირვებები, ორბიტალური თანამგზავრების ტრეკინგი და სივრცის ღრმა ანალიტიკა ერთ ინტუიციურ პლატფორმაში.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#about" class="btn btn-primary" id="hero-learn-btn">
+            <span>გაგება</span>
+            <svg class="btn-arrow" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+          <a href="#features" class="btn btn-glass" id="hero-features-btn">
+            <span>ფუნქციები</span>
+          </a>
+        </div>
+
+        <!-- Hero Stats/Highlights Preview -->
+        <div class="hero-stats-bar">
+          <div class="stat-item">
+            <span class="stat-number">50,000+</span>
+            <span class="stat-label">მონიტორინგირებული ობიექტი</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">99.9%</span>
+            <span class="stat-label">კოორდინატების სიზუსტე</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">ცოცხალი ტელემეტრია</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. About Section (2 Columns) -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">ინფორმაცია</span>
+          <h2 class="section-title">პროექტის შესახებ</h2>
+          <p class="section-subtitle">გაიგეთ, თუ როგორ ქმნის AstroWatch კოსმოსურ მეცნიერებას ყველასთვის ხელმისაწვდომს.</p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Column 1 -->
+          <div class="about-col about-col-primary">
+            <div class="about-card-inner">
+              <div class="about-icon-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                <span>ჩვენი მისია და ხედვა</span>
+              </div>
+              <h3 class="about-heading">ტექნოლოგია, რომელიც სამყაროსთან გაკავშირებთ</h3>
+              <p class="about-text">
+                AstroWatch შეიქმნა იმ მიზნით, რომ ასტრონომიული დაკვირვებები და კოსმოსური მონაცემები ხელმისაწვდომი ყოფილიყო როგორც პროფესიონალი მკვლევარებისთვის, ისე მოყვარული ვარსკვლავთმრიცხველებისთვის.
+              </p>
+              <p class="about-text">
+                თანამედროვე ხელოვნური ინტელექტისა და გლობალური ტელესკოპების ქსელის მეშვეობით, ჩვენ ვაერთიანებთ მილიონობით მონაცემს ერთიან, მარტივად აღქმად ინტერფეისში.
+              </p>
+              <div class="about-bullet-list">
+                <div class="about-bullet">
+                  <span class="bullet-check">✓</span>
+                  <span>გლობალური ობსერვატორიების ინტეგრაცია</span>
+                </div>
+                <div class="about-bullet">
+                  <span class="bullet-check">✓</span>
+                  <span>მონაცემთა მყისიერი სინქრონიზაცია</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="about-col about-col-secondary">
+            <div class="about-card-inner">
+              <div class="about-icon-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>მთავარი უპირატესობები</span>
+              </div>
+              <h3 class="about-heading">სიზუსტე, სიჩქარე და საიმედოობა</h3>
+              <p class="about-text">
+                ჩვენი სისტემა უწყვეტ რეჟიმში აანალიზებს ორბიტალურ ტრაექტორიებს, ციური სხეულების მოძრაობას და ატმოსფერულ პირობებს, რათა მიიღოთ უმაღლესი სიზუსტის პროგნოზები.
+              </p>
+              <div class="about-feature-boxes">
+                <div class="mini-feature-box">
+                  <div class="mini-feature-icon">🛰️</div>
+                  <div>
+                    <h4 class="mini-feature-title">რეალურ დროში ტელემეტრია</h4>
+                    <p class="mini-feature-desc">ორბიტაზე მყოფი აპარატების ზუსტი ადგილმდებარეობა ყოველ წამს.</p>
+                  </div>
+                </div>
+                <div class="mini-feature-box">
+                  <div class="mini-feature-icon">✨</div>
+                  <div>
+                    <h4 class="mini-feature-title">ინტერაქტიული ცის რუკა</h4>
+                    <p class="mini-feature-desc">თქვენს ლოკაციაზე მორგებული ვარსკვლავური რუკა 3D ვიზუალიზაციით.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Features Section (3 Side-by-Side Cards) -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">შესაძლებლობები</span>
+          <h2 class="section-title">მთავარი ფუნქციები</h2>
+          <p class="section-subtitle">შეისწავლეთ AstroWatch-ის მოწინავე ხელსაწყოები კოსმოსის აღმოსაჩენად.</p>
+        </div>
+
+        <div class="features-cards-row">
+          <!-- Card 1 -->
+          <div class="feature-card" id="feature-card-1">
+            <div class="card-glow"></div>
+            <div class="feature-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+            </div>
+            <span class="feature-tag">ორბიტალური სისტემა</span>
+            <h3 class="feature-title">თანამგზავრების ტრეკინგი</h3>
+            <p class="feature-text">
+              დედამიწის ორბიტაზე მოძრავი საერთაშორისო კოსმოსური სადგურისა (ISS) და ათასობით თანამგზავრის რეალური ტრაექტორიის უწყვეტი მონიტორინგი.
+            </p>
+            <div class="card-bottom">
+              <span class="card-link">მეტის ნახვა →</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="feature-card featured" id="feature-card-2">
+            <div class="popular-badge">პოპულარული</div>
+            <div class="card-glow"></div>
+            <div class="feature-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <span class="feature-tag">3D ვიზუალიზაცია</span>
+            <h3 class="feature-title">ღამის ცის ინტერაქტიული რუკა</h3>
+            <p class="feature-text">
+              თანავარსკვლავედების, პლანეტებისა და ნისლეულების დეტალური ციფრული ატლასი. მიმართეთ ეკრანი ცისკენ და ამოიცანით ნებისმიერი მნათობი.
+            </p>
+            <div class="card-bottom">
+              <span class="card-link">მეტის ნახვა →</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="feature-card" id="feature-card-3">
+            <div class="card-glow"></div>
+            <div class="feature-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+            </div>
+            <span class="feature-tag">ცოცხალი შეტყობინებები</span>
+            <h3 class="feature-title">ასტრონომიული მოვლენები</h3>
+            <p class="feature-text">
+              არასდროს გამოტოვოთ მეტეორთა წვიმები, მზისა და მთვარის დაბნელებები ან პლანეტათა აღლუმები. მიიღეთ ზუსტი დროის შეტყობინებები თქვენს ლოკაციაზე.
+            </p>
+            <div class="card-bottom">
+              <span class="card-link">მეტის ნახვა →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-wrapper">
+          <div class="contact-info-col">
+            <span class="section-eyebrow">კავშირი</span>
+            <h2 class="contact-title">დაგვიკავშირდით</h2>
+            <p class="contact-description">
+              გაქვთ შეკითხვა AstroWatch-ის შესახებ, გაინტერესებთ პარტნიორობა თუ უბრალოდ გსურთ თქვენი დაკვირვების გაზიარება? გამოგვიგზავნეთ შეტყობინება.
+            </p>
+
+            <div class="contact-details">
+              <div class="contact-detail-item">
+                <div class="detail-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div class="detail-label">ელფოსტა</div>
+                  <div class="detail-value">info@astrowatch.space</div>
+                </div>
+              </div>
+
+              <div class="contact-detail-item">
+                <div class="detail-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div class="detail-label">ადგილმდებარეობა</div>
+                  <div class="detail-value">თბილისი, საქართველო</div>
+                </div>
+              </div>
+
+              <div class="contact-detail-item">
+                <div class="detail-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div class="detail-label">მხარდაჭერა</div>
+                  <div class="detail-value">24/7 ონლაინ მონიტორინგი</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-col">
+            <div class="contact-form-card">
+              <h3 class="form-title">მოგვწერეთ შეტყობინება</h3>
+              <p class="form-subtitle">შეავსეთ ქვემოთ მოცემული ველები და ჩვენ მალე გიპასუხებთ</p>
+
+              <form id="contact-form" class="contact-form" novalidate>
+                <div class="form-group">
+                  <label for="contact-name" class="form-label">სახელი</label>
+                  <div class="input-wrapper">
+                    <input 
+                      type="text" 
+                      id="contact-name" 
+                      name="name" 
+                      class="form-input" 
+                      placeholder="თქვენი სახელი" 
+                      required
+                    >
+                    <span class="field-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                      </svg>
+                    </span>
+                  </div>
+                  <span class="error-msg" id="name-error">გთხოვთ მიუთითოთ სახელი</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-email" class="form-label">ელფოსტა</label>
+                  <div class="input-wrapper">
+                    <input 
+                      type="email" 
+                      id="contact-email" 
+                      name="email" 
+                      class="form-input" 
+                      placeholder="example@domain.com" 
+                      required
+                    >
+                    <span class="field-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                    </span>
+                  </div>
+                  <span class="error-msg" id="email-error">გთხოვთ მიუთითოთ სწორი ელფოსტა</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-message" class="form-label">შეტყობინება</label>
+                  <div class="input-wrapper textarea-wrapper">
+                    <textarea 
+                      id="contact-message" 
+                      name="message" 
+                      class="form-input form-textarea" 
+                      placeholder="თქვენი შეტყობინება..." 
+                      rows="4" 
+                      required
+                    ></textarea>
+                  </div>
+                  <span class="error-msg" id="message-error">გთხოვთ ჩაწეროთ თქვენი შეტყობინება</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn">
+                  <span class="btn-text">გაგზავნა</span>
+                  <span class="btn-loader" style="display: none;">
+                    <svg class="spinner" viewBox="0 0 50 50">
+                      <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                    </svg>
+                  </span>
+                  <svg class="btn-send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </form>
+
+              <!-- Success Alert Toast / Message -->
+              <div class="form-alert form-alert-success" id="form-success-alert" style="display: none;">
+                <div class="alert-icon">✓</div>
+                <div class="alert-content">
+                  <h4>შეტყობინება წარმატებით გაიგზავნა!</h4>
+                  <p>გმადლობთ დაკავშირებისთვის. ჩვენი გუნდი მალე გიპასუხებთ.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <a href="#hero" class="brand-logo footer-logo">
+          <span class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="7"></circle>
+              <circle cx="18" cy="6" r="1.5" fill="currentColor"></circle>
+            </svg>
+          </span>
+          <span class="logo-text">Astro<span class="text-accent">Watch</span></span>
+        </a>
+        <p class="footer-tagline">სამყაროს კვლევისა და კოსმოსური მონიტორინგის თანამედროვე პლატფორმა.</p>
+      </div>
+
+      <div class="footer-nav">
+        <a href="#hero">მთავარი</a>
+        <a href="#about">ჩვენ შესახებ</a>
+        <a href="#features">შესაძლებლობები</a>
+        <a href="#contact">კონტაქტი</a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 AstroWatch. ყველა უფლება დაცულია.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
